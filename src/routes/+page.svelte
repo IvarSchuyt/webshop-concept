@@ -1,8 +1,10 @@
 <script>
     let video;
+    let showButton = true;
 
     function playVideo() {
         video.play();
+        showButton = false;
     }
 
     function handleVideoEnd() {
@@ -11,17 +13,17 @@
 </script>
 
 <section>
-<button on:click={playVideo}>Enter</button>
+{#if showButton}
+    <button on:click={playVideo}>入力</button>
+{/if}
 
 <video bind:this={video} src="intro.mp4" preload="auto" on:ended={handleVideoEnd}>
     <track kind="captions">
 </video>
 </section>
 
-
 <style>
-
-    section{
+    section {
         position: relative;
         width: 100%;
         height: 100vh;
@@ -41,7 +43,7 @@
         z-index: 1;
     }
 
-    video{
+    video {
         height: 100vh;
     }
 </style>
