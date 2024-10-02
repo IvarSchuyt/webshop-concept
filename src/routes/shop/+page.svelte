@@ -1,29 +1,34 @@
 <script>
     import { onMount } from 'svelte';
 
-    // Reference to the span element
-    let spanElement;
+    // Array to hold references to the span elements
+    let spanElements = [];
 
-    // Function to run when the component is mounted
+    // Function to move a span element to a random position and make it visible
+    function moveSpan(spanElement) {
+        const randomX = Math.random() * window.innerWidth;
+        const randomY = Math.random() * window.innerHeight;
+
+        spanElement.style.left = `${randomX}px`;
+        spanElement.style.top = `${randomY}px`;
+        spanElement.style.display = 'block';
+
+        setTimeout(() => {
+            spanElement.style.display = 'none';
+        }, 200);
+    }
+
+    // Function to set intervals for each span element
+    function setIntervals() {
+        spanElements.forEach((spanElement, index) => {
+            setInterval(() => {
+                moveSpan(spanElement);
+            }, 2000 + index * 500); // Different intervals for each span
+        });
+    }
+
     onMount(() => {
-        // Set an interval to move the span element every 200ms
-        setInterval(() => {
-            // Generate random x and y positions within the window
-            const randomX = Math.random() * window.innerWidth;
-            const randomY = Math.random() * window.innerHeight;
-            
-            // Set the position of the span element
-            spanElement.style.left = `${randomX}px`;
-            spanElement.style.top = `${randomY}px`;
-            
-            // Make the span element visible
-            spanElement.style.display = 'block';
-
-            // Hide the span element after 200ms
-            setTimeout(() => {
-                spanElement.style.display = 'none';
-            }, 200);
-        }, 2000);
+        setIntervals();
     });
 
     onMount(() => {
@@ -54,7 +59,7 @@
         <li>
             <div>
                 <img src="4.webp" alt="">
-                </div>
+            </div>
             <span>Tシャツ</span>
         </li>
         <li>
@@ -77,27 +82,26 @@
         </li>
     </ul>
 
-    <span class="popup" bind:this={spanElement}>イシュ</span>
-
+    <!-- Multiple span elements with class popup -->
+    {#each Array(5) as _, i}
+        <span class="popup" bind:this={spanElements[i]}>イシュ</span>
+    {/each}
 </section>
 
-
-
 <style>
-
-    header{
+    header {
         padding: 2rem 0;
     }
-    
-    a{
+
+    a {
         text-decoration: none;
     }
 
-    h1{
+    h1 {
         font-size: 2rem;
     }
-    
-    section{
+
+    section {
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -105,7 +109,7 @@
         overflow: hidden;
     }
 
-    ul{
+    ul {
         width: 100%;
         display: flex;
         flex-wrap: wrap;
@@ -114,7 +118,7 @@
         gap: 2.5rem 5rem;
     }
 
-    li{
+    li {
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -122,7 +126,7 @@
         gap: 1rem;
     }
 
-    div{
+    div {
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -143,5 +147,4 @@
         display: none;
         z-index: -1;
     }
-
 </style>
