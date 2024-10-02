@@ -10,12 +10,18 @@
     function handleVideoEnd() {
         window.location.href = '/shop'; // Change this to the URL you want to navigate to
     }
+
+    function skipVideo() {
+        video.pause();
+        handleVideoEnd();
+    }
 </script>
 
 <section>
 {#if showButton}
     <button on:click={playVideo}>入力</button>
 {/if}
+<button on:click={skipVideo} style="position: absolute; top: 10px; right: 10px; z-index: 2;">Skip</button>
 
 <video bind:this={video} src="intro.mp4" preload="auto" on:ended={handleVideoEnd}>
     <track kind="captions">
