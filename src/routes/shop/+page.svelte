@@ -52,18 +52,6 @@
         </li>
         <li>
             <div>
-                <img src="3.webp" alt="">
-            </div>
-            <span>Tシャツ</span>
-        </li>
-        <li>
-            <div>
-                <img src="4.webp" alt="">
-            </div>
-            <span>Tシャツ</span>
-        </li>
-        <li>
-            <div>
                 <img src="5.webp" alt="">
             </div>
             <span>Tシャツ</span>
@@ -80,6 +68,18 @@
             </div>
             <span>Tシャツ</span>
         </li>
+        <li>
+            <div>
+                <img src="3.webp" alt="">
+            </div>
+            <span>Tシャツ</span>
+        </li>
+        <li>
+            <div>
+                <img src="4.webp" alt="">
+            </div>
+            <span>Tシャツ</span>
+        </li>
     </ul>
 
     <!-- Multiple span elements with class popup -->
@@ -90,7 +90,7 @@
 
 <style>
     header {
-        padding: 2rem 0;
+        padding: 2rem 0 4rem 0;
     }
 
     a {
@@ -116,6 +116,7 @@
         justify-content: center;
         align-items: center;
         gap: 2.5rem 5rem;
+        max-width: 80rem;
     }
 
     li {
